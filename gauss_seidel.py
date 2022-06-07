@@ -1,5 +1,5 @@
 # Escolhemos valor inicial zero para sistemas iterativo de sistemas lineares, o algoritmo se "ajeita"
-def gaus_jacobi(matriz: list, b: list, precisao: float):
+def gaus_seidel(matriz: list, b: list, precisao: float):
     lista_x0 = [0]*len(matriz[0])
     lista_x = lista_x0[:]
     iter = 0
@@ -23,4 +23,4 @@ def gaus_jacobi(matriz: list, b: list, precisao: float):
 
     print(f"Resultado: {lista_x} com {iter} iterações")
 
-gaus_jacobi([[3, -1, -1], [1, 3, 1], [2, -2, 4]], [1,5,4], 10**(-8))
+gaus_seidel([[3, -1, -1], [1, 3, 1], [2, -2, 4]], [1,5,4], 10**(-8))
