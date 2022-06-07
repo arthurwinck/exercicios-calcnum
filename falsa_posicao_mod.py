@@ -3,7 +3,7 @@
 
 from xdez import xdez
 
-def falsa_posicao_iter(a, b, funcao, precisao):
+def falsa_posicao_mod_iter(a, b, funcao, precisao):
     iter = 0
     resA = funcao(a)
     resB = funcao(b)
@@ -14,7 +14,7 @@ def falsa_posicao_iter(a, b, funcao, precisao):
         #Pode existir uma raíz aqui?
         if resA*resB < 0:
             
-            x = a - resA*(b - a)/(resB - resA)
+            x = (a*resB - b*resA)/(resB - resA)
             resX = funcao(x)
 
             if abs(resX) < precisao:
@@ -22,10 +22,14 @@ def falsa_posicao_iter(a, b, funcao, precisao):
                 break
 
             if resA*resX < 0:
+                pa = resB/(resB+resX)
+                resA = resA*pa
                 b = x
                 resB = resX
             
             else:
+                pb = resA/(resA+resX)
+                resB = resB*pb
                 a = x
                 resA = resX
 
@@ -56,4 +60,4 @@ def falsa_posicao(a, b, funcao, precisao, iter):
 
     return None    
 
-falsa_posicao_iter(0, 2, xdez, 10**(-10))
+falsa_posicao_mod_iter(0, 2, xdez, 10**(-10))

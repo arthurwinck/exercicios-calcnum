@@ -1,3 +1,4 @@
+from xdez import xdez
 # Método da Secante
 # 
 # 
@@ -11,22 +12,25 @@
 # f(x1) vai ser o nosso método de parada
 from expsen import expsen
 
-def secante(a, b, x0, x1, funcao, precisao):
+def secante(x0, x1, funcao, precisao, iter):
+    iter += 1
+    
     fx0 = funcao(x0)
     fx1 = funcao(x1)
 
-    print(x1)
-    print(fx1)
+    #print(x1)
+    #print(fx1)
 
     if abs(fx1) < precisao:
+        print(f"raíz = {x1} / iterações = {iter} / precisão = {funcao(x1)}")
         return x1
     else:
         xk = x1 - fx1*(x1-x0)/(fx1-fx0)
-        resFunc = secante(a,b, x1, xk, funcao, precisao)
+        resFunc = secante(x1, xk, funcao, precisao, iter)
         
         if resFunc != None:
             return resFunc
 
     return None
 
-res = secante(0,1,1,2,expsen,10**(-8))
+res = secante(1,2,xdez,10**(-10), 0)

@@ -1,7 +1,9 @@
+from xdez import xdez
 #Método de bisseção por recursao
-def bissecao(a, b, funcao, precisao):
+def bissecao(a, b, funcao, precisao, iter):
     resA = funcao(a)
     resB = funcao(b)
+    iter += 1
 
     #Pode existir uma raíz aqui?
     if resA*resB < 0:
@@ -12,17 +14,19 @@ def bissecao(a, b, funcao, precisao):
 
         #Será que o ponto médio satisfaz (é raíz) a precisão?
         if abs(resX) < precisao:
-            print(f"x = {x}, resX = {resX}")
+            print(f"raíz = {x} / precisão = {resX} / iterações = {iter}")
             return x
     
         #Testar os dois subintervalos
         if resA*resX < 0:
-            resFunc = bissecao(a, x, funcao, precisao)
+            resFunc = bissecao(a, x, funcao, precisao, iter)
             if resFunc != None:
                 return resFunc
         else:
-            resFunc = bissecao(x, b, funcao, precisao)
+            resFunc = bissecao(x, b, funcao, precisao, iter)
             if resFunc != None:
                 return resFunc
 
     return None    
+
+bissecao(0,2,xdez, 10**(-10), 0)
