@@ -1,24 +1,21 @@
 def gauss_pivo_sem(matriz: list, b: list):
     x = [0]*len(matriz)
     matriz = pivotacao(matriz)
-    
+    print(matriz)
 
 def pivotacao(matriz):
-    for j in range(len(matriz[0])):
-        zeros = 0
-        lista_col = []
+    for j in range(len(matriz[0])-1):
+        maior = abs(matriz[j][j])
+        linha_maior = j
+
         for i in range(len(matriz)):
-            if matriz[i][j] == 0:
-                zeros += 1
-            lista_col.append(matriz[i][j])
+            if matriz[i][j] > maior:
+                maior = matriz[i][j]
 
-        if zeros < len(matriz) - 1:
-            pos_pivo = lista_col.index(max(lista_col))
-
-            if pos_pivo[0] != 0:
-                temp = matriz[pos_pivo]
-                matriz[pos_pivo] = matriz[0]
-                matriz[0] = temp
+        if linha_maior != 0:
+            temp = matriz[linha_maior]
+            matriz[linha_maior] = matriz[0]
+            matriz[0] = temp
 
     return matriz
 
