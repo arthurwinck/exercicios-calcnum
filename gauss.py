@@ -1,23 +1,38 @@
 def gauss_pivo_sem(matriz: list, b: list):
     x = [0]*len(matriz)
-    matriz = pivotacao(matriz)
-    print(matriz)
-
-def pivotacao(matriz):
-    for j in range(len(matriz[0])-1):
-        maior = abs(matriz[j][j])
+    
+    
+    for j in range(len(matriz[0]) - 1):
+        maior = matriz[j][j]
         linha_maior = j
 
         for i in range(len(matriz)):
-            if matriz[i][j] > maior:
+            if abs(matriz[i][j]) > abs(maior):
                 maior = matriz[i][j]
+                linha_maior = i
 
         if linha_maior != 0:
             temp = matriz[linha_maior]
-            matriz[linha_maior] = matriz[0]
-            matriz[0] = temp
+            matriz[linha_maior] = matriz[j]
+            matriz[j] = temp
 
-    return matriz
+            temp = b[linha_maior]
+            b[linha_maior] = b[j]
+            b[j] = temp
+    
+        print(matriz)
+
+        for l in range(j+1, len(matriz)):
+            mult = matriz[l][j]/matriz[j][j]
+            for k in range(len(matriz[0])):
+                print(f"{matriz[l][k]} = {matriz[l][k]} - {mult*matriz[l][j]}")
+                matriz[l][k] = matriz[l][k] - mult*matriz[j][k]
+                
+            b[l] = b[l] - mult*b[l]
+
+
+    print(matriz)
+    print(b)
 
 #Retrosubstituição
 
