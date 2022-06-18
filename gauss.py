@@ -20,12 +20,12 @@ def gauss_pivo_sem(matriz: list, b: list):
             b[linha_maior] = b[j]
             b[j] = temp
     
-        print(matriz)
+        #print(matriz)
 
         for l in range(j+1, len(matriz)):
             mult = matriz[l][j]/matriz[j][j]
             for k in range(len(matriz[0])):
-                print(f"{matriz[l][k]} = {matriz[l][k]} - {mult*matriz[l][j]}")
+                #print(f"{matriz[l][k]} = {matriz[l][k]} - {mult*matriz[l][j]}")
                 matriz[l][k] = matriz[l][k] - mult*matriz[j][k]
                 
             b[l] = b[l] - mult*b[l]
