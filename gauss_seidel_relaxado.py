@@ -12,8 +12,8 @@ def gaus_seidel(matriz: list, b: list, precisao: float):
                 if i != j:
                     soma += matriz[i][j]*lista_x[j]
 
-            lista_x[i] = (b[i] - soma)/matriz[i][i]
-            #lista_x[i] = (1 - w)*lista_x[i] + w*(b[i] - soma)/matriz[i][i]
+            #lista_x[i] = (b[i] - soma)/matriz[i][i]
+            lista_x[i] = (1 - w)*lista_x[i] + w*(b[i] - soma)/matriz[i][i]
 
         lista_desvio = list(map(lambda x, y: abs(x - y), lista_x, lista_x0))
         iter += 1
@@ -25,4 +25,4 @@ def gaus_seidel(matriz: list, b: list, precisao: float):
 
     print(f"Resultado: {lista_x} com {iter} iterações")
 
-gaus_seidel([[3, -1, -1], [1, 3, 1], [2, -2, 4]], [1,5,4], 10**(-8))
+gaus_seidel([[3, -1, -1], [1, 3, 1], [2, -2, 4]], [1,5,4], 10**(-7))
