@@ -24,5 +24,8 @@ def gaus_seidel(matriz: list, b: list, precisao: float):
         lista_x0 = lista_x[:]
 
     print(f"Resultado: {lista_x} com {iter} iterações")
+    print(f"Desvio: {sum(lista_desvio)}")
 
-gaus_seidel([[3, -1, -1], [1, 3, 1], [2, -2, 4]], [1,5,4], 10**(-8))
+
+#gaus_seidel([[3, -1, -1], [1, 3, 1], [2, -2, 4]], [1,5,4], 10**(-8))
+gaus_seidel([[4, 1 ,2], [1 ,2 ,1], [1, 0.1, 1]], [1, 4, -3], 10**(-6))
